@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.security.Timestamp;
 import java.sql.Blob;
 import java.util.Objects;
@@ -19,14 +21,19 @@ public class Assert {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id_Assert", nullable = false)
     private Long Id_Assert;
+    @NotEmpty
+    @Size(min=2, message = "Asert name should have at least 2 characters.")
     @Column(name="Name", nullable = false)
     private String Name;
+    @NotEmpty
     @Column(name="Description", nullable = false)
     private String Description;
     @Column(name="InputDate", nullable = false)
     private Timestamp InputDate;
+    @NotEmpty
     @Column(name="Assert_Csts_Nr", nullable = false)
     private Long Assert_Csts_Nr;
+    @NotEmpty
     @Column(name="Image", nullable = false)
     private Blob Image;
 

@@ -5,6 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Getter
@@ -17,19 +21,32 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id_employee", nullable = false)
     private Long Id_Employee;
+    @NotEmpty
+    @Size(min=2, message = "Employee name should have at least 2 characters.")
     @Column(name="Name", nullable = false)
     private String Name;
+    @NotEmpty
+    @Size(min=2, message = "Employee cos center should have at least 2 characters.")
     @Column(name="Cos_Center", nullable = false)
     private String Cos_Center;
+    @NotEmpty
+    @Size(min=2, message = "Employee manager should have at least 2 characters.")
     @Column(name="Manager", nullable = false)
     private String Manager;
+    @NotEmpty
+    @Size(min = 10, max=10, message = "Phone number must have 10 digits.")
     @Column(name="Nr_Of_Phone", nullable = false)
     private int Nr_Of_Phone;
+    @NotEmpty
+    @Size(min=8, message = "Employee Password should have at least 2 characters.")
     @Column(name="Password", nullable = false)
     private String Password;
+    @NotEmpty
+    @Email
     @Column(name="Email", nullable = false)
     private String Email;
-
+    @NotEmpty
+    @Size(min = 6, max =10,message = "Employee  code must have a length of 6 numbers.")
     @Column(name="Code")
     private String Code;
     public Employee(){

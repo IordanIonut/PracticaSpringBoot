@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Getter
@@ -17,10 +19,17 @@ public class CostCenter {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="Id_costcentes", nullable = false)
     private Long Id_costcenters;
+    @NotEmpty
     @Column(name="Csts_empl_id", nullable = false)
     private Long Csts_empl_id;
+    @NotEmpty
+    @Size(min=1, message = "Flag status must be 0 or 1")
     @Column(name="Cstc_Delete_flag", nullable = false)
     private Boolean Cstc_Delete_flag;
+    @NotEmpty
+    @Size(min=2, message = "Cost center name should have at least 2 characters.")
+    @Column(name="Name", nullable = false)
+    private String Name;
 
     public CostCenter() {
     }
