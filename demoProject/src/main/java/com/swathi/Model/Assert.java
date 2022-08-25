@@ -19,15 +19,15 @@ public class Assert {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id_Assert", nullable = false)
     private Long Id_Assert;
-    @Column(name="Name")
+    @Column(name="Name", nullable = false)
     private String Name;
-    @Column(name="Description")
+    @Column(name="Description", nullable = false)
     private String Description;
-    @Column(name="InputDate")
+    @Column(name="InputDate", nullable = false)
     private Timestamp InputDate;
-    @Column(name="Assert_Csts_Nr")
+    @Column(name="Assert_Csts_Nr", nullable = false)
     private Long Assert_Csts_Nr;
-    @Column(name="Image")
+    @Column(name="Image", nullable = false)
     private Blob Image;
 
     public Assert() {

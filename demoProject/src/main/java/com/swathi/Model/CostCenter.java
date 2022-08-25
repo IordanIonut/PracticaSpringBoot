@@ -15,11 +15,11 @@ import java.util.Objects;
 public class CostCenter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="Id_costcentes")
+    @Column(name="Id_costcentes", nullable = false)
     private Long Id_costcenters;
-    @Column(name="Csts_empl_id")
+    @Column(name="Csts_empl_id", nullable = false)
     private Long Csts_empl_id;
-    @Column(name="Cstc_Delete_flag")
+    @Column(name="Cstc_Delete_flag", nullable = false)
     private Boolean Cstc_Delete_flag;
 
     public CostCenter() {

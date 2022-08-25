@@ -17,23 +17,26 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id_employee", nullable = false)
     private Long Id_Employee;
-    @Column(name="Name")
+    @Column(name="Name", nullable = false)
     private String Name;
-    @Column(name="Cos_Center")
+    @Column(name="Cos_Center", nullable = false)
     private String Cos_Center;
-    @Column(name="Manager")
+    @Column(name="Manager", nullable = false)
     private String Manager;
-    @Column(name="Nr_Of_Phone")
+    @Column(name="Nr_Of_Phone", nullable = false)
     private int Nr_Of_Phone;
-    @Column(name="Password")
+    @Column(name="Password", nullable = false)
     private String Password;
-    @Column(name="Email")
+    @Column(name="Email", nullable = false)
     private String Email;
+
+    @Column(name="Code")
+    private String Code;
     public Employee(){
 
     }
 
-    public Employee(Long id_Employee, String name, String cos_Center, String manager, int nr_Of_Phone, String password, String email) {
+    public Employee(Long id_Employee, String name, String cos_Center, String manager, int nr_Of_Phone, String password, String email, String code) {
         Id_Employee = id_Employee;
         Name = name;
         Cos_Center = cos_Center;
@@ -41,16 +44,25 @@ public class Employee {
         Nr_Of_Phone = nr_Of_Phone;
         Password = password;
         Email = email;
+        Code = code;
     }
 
-    public Employee(String Name, String Cos_Center, String Manager, int Nr_Of_Phone, String Password, String Email){
-        super();
-        this.Name=Name;
-        this.Cos_Center=Cos_Center;
-        this.Manager=Manager;
-        this.Nr_Of_Phone=Nr_Of_Phone;
-        this.Password=Password;
-        this.Email=Email;
+    public Employee(String name, String cos_Center, String manager, int nr_Of_Phone, String password, String email, String code) {
+        Name = name;
+        Cos_Center = cos_Center;
+        Manager = manager;
+        Nr_Of_Phone = nr_Of_Phone;
+        Password = password;
+        Email = email;
+        Code = code;
+    }
+
+    public String getCode() {
+        return Code;
+    }
+
+    public void setCode(String code) {
+        Code = code;
     }
 
     public Long getId_Employee() {

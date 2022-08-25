@@ -18,15 +18,15 @@ public class AssertEmployee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id_assert", nullable = false)
     private Long Id_assert;
-    @Column(name="Empl_Id")
+    @Column(name="Empl_Id", nullable = false)
     private Long Empl_Id;
-    @Column(name="From")
+    @Column(name="From", nullable = false)
     private Timestamp From;
-    @Column(name="To")
+    @Column(name="To", nullable = false)
     private Timestamp To;
-    @Column(name="Cstc_nr")
+    @Column(name="Cstc_nr", nullable = false)
     private Long Cstc_nr;
-    @Column(name="End_Of_Life")
+    @Column(name="End_Of_Life", nullable = false)
     private Timestamp End_Of_Life;
 
     public AssertEmployee() {
