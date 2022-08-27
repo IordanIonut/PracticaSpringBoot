@@ -9,7 +9,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 @Component
-public class SendMailSender {
+public class SendMail {
 
     @Autowired
     private JavaMailSender javaMailSender;
