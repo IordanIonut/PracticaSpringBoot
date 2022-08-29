@@ -1,4 +1,4 @@
-package com.swathi;
+package com.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;

@@ -1,6 +1,6 @@
-package com.swathi.Controller;
+package com.demo.Controller;
 
-import com.swathi.SendMail;
+import com.demo.SendMail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

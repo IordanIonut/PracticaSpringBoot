@@ -1,4 +1,4 @@
-package com.swathi.demoProject;
+package com.demo.demoProject;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
