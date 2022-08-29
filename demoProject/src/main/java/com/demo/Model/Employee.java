@@ -1,34 +1,44 @@
 package com.demo.Model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "employee")
-
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_employee" , nullable = false)
     private long Id_Employee;
-    @Column(name = "name")
+    @NotNull
+    @Column(name = "name", unique=true , nullable = false)
     private String Name;
-    @Column(name = "cos_Center")
+    @NotNull
+    @Column(name = "cos_center", nullable = false)
     private long Cos_Center;
-    @ManyToOne(targetEntity=Manager.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "manager_id")
+    @NotNull
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name = "id_manager")
     private Manager Manager;
-    @Column(name = "nr_of_phone")
+    @NotNull
+    @Column(name = "nr_of_phone", unique=true ,  nullable = false)
     private long Nr_Of_Phone;
-    @Column(name = "password")
+    @NotNull
+    @Column(name = "password", nullable = false)
     private String Password;
-    @Column(name = "email")
+    @NotNull
+    @Email
+    @Column(name = "email", unique=true , nullable = false)
     private String Email;
-    @Column(name = "code")
+    @NotNull
+    @Column(name = "code", nullable = false)
     private long Code;
 
     public Employee() {
     }
 
-    public Employee(String name, long cos_Center, Manager manager, long nr_Of_Phone, String password, String email, long code) {
+    public Employee(String name, long cos_Center, com.demo.Model.Manager manager, long nr_Of_Phone, String password, String email, long code) {
         Name = name;
         Cos_Center = cos_Center;
         Manager = manager;
@@ -38,8 +48,7 @@ public class Employee {
         Code = code;
     }
 
-    public Employee(long id_Employee, String name, long cos_Center, Manager manager, long nr_Of_Phone,
-                    String password, String email, long code) {
+    public Employee(long id_Employee, String name, long cos_Center, com.demo.Model.Manager manager, long nr_Of_Phone, String password, String email, long code) {
         Id_Employee = id_Employee;
         Name = name;
         Cos_Center = cos_Center;

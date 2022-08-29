@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:4200/"})
@@ -50,22 +51,22 @@ public class EmployeeController {
         }
     }*/
 
-    @GetMapping("/listar")
+    @GetMapping(value = "/listar")
     public ResponseEntity<List<Employee>> listarEmployee(){
         return new ResponseEntity<>(employeeRepository.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/managers")
+    @GetMapping(value = "/managers")
     public ResponseEntity<List<Manager>> listarManager(){
         return new ResponseEntity<>(managerSer.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping("/createEmployee")
-     public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee){
+    @PostMapping(value = "/listar")
+    public ResponseEntity<Employee> createEmployee(@Valid @RequestBody Employee employee){
         return new ResponseEntity<>(employeeRepository.save(employee),HttpStatus.CREATED);
      }
 
-     @PutMapping("/actualizar/{id}")
+     @PutMapping(value = "/actualizar/{id}")
      public ResponseEntity<Employee> actualizareEmployee(@PathVariable Long id, @RequestBody Employee employee){
         Employee emp = employeeRepository.findById(id);
         if(emp == null){
@@ -86,7 +87,7 @@ public class EmployeeController {
         }
      }
 
-     @DeleteMapping("/delete/{id}")
+     @DeleteMapping(value = "/delete/{id}")
      public ResponseEntity<?> deleteEmployee(@PathVariable Long id){
         employeeRepository.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
