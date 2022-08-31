@@ -1,141 +1,55 @@
 package com.demo.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-
-@Entity
-@Table(name = "employee")
+import java.util.ArrayList;
+import java.util.List;
+@JsonIgnoreProperties
+@Entity(name = "employee")
+@Data
+@ToString
+@Getter
+@Setter
+@AllArgsConstructor
+@Table(indexes = {
+        @Index(name = "idx_employee", columnList = "manager_id_manager")
+})
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_employee" , nullable = false)
     private long Id_Employee;
-    @NotNull
-    @Column(name = "name", unique=true , nullable = false)
+
+    @Column(name = "name", nullable = false)
     private String Name;
-    @NotNull
-    @Column(name = "cos_center", nullable = false)
-    private long Cos_Center;
-    @NotNull
-    @ManyToOne
-    @PrimaryKeyJoinColumn(name = "id_manager")
+
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = CosCenter.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "cos_center_id_cos_center", referencedColumnName = "id_cos_center")
+    private CosCenter Cos_Center;
+
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Manager.class)
+    @JoinColumn(name = "manager_id_manager", referencedColumnName = "id_manager")
     private Manager Manager;
-    @NotNull
-    @Column(name = "nr_of_phone", unique=true ,  nullable = false)
+
+    @Column(name = "nr_of_phone",  nullable = false)
     private long Nr_Of_Phone;
-    @NotNull
+
     @Column(name = "password", nullable = false)
     private String Password;
-    @NotNull
+
     @Email
-    @Column(name = "email", unique=true , nullable = false)
+    @Column(name = "email", nullable = false)
     private String Email;
-    @NotNull
+
     @Column(name = "code", nullable = false)
     private long Code;
 
     public Employee() {
-    }
 
-    public Employee(String name, long cos_Center, com.demo.Model.Manager manager, long nr_Of_Phone, String password, String email, long code) {
-        Name = name;
-        Cos_Center = cos_Center;
-        Manager = manager;
-        Nr_Of_Phone = nr_Of_Phone;
-        Password = password;
-        Email = email;
-        Code = code;
-    }
-
-    public Employee(long id_Employee, String name, long cos_Center, com.demo.Model.Manager manager, long nr_Of_Phone, String password, String email, long code) {
-        Id_Employee = id_Employee;
-        Name = name;
-        Cos_Center = cos_Center;
-        Manager = manager;
-        Nr_Of_Phone = nr_Of_Phone;
-        Password = password;
-        Email = email;
-        Code = code;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "Id_Employee=" + Id_Employee +
-                ", Name='" + Name + '\'' +
-                ", Cos_Center=" + Cos_Center +
-                ", Manager=" + Manager +
-                ", Nr_Of_Phone=" + Nr_Of_Phone +
-                ", Password='" + Password + '\'' +
-                ", Email='" + Email + '\'' +
-                ", Code='" + Code + '\'' +
-                '}';
-    }
-
-    public long getId_Employee() {
-        return Id_Employee;
-    }
-
-    public void setId_Employee(long id_Employee) {
-        Id_Employee = id_Employee;
-    }
-
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-        Name = name;
-    }
-
-    public long getCos_Center() {
-        return Cos_Center;
-    }
-
-    public void setCos_Center(long cos_Center) {
-        Cos_Center = cos_Center;
-    }
-
-    public Manager getManager() {
-        return Manager;
-    }
-
-    public void setManager(Manager manager) {
-        Manager = manager;
-    }
-
-    public long getNr_Of_Phone() {
-        return Nr_Of_Phone;
-    }
-
-    public void setNr_Of_Phone(long nr_Of_Phone) {
-        Nr_Of_Phone = nr_Of_Phone;
-    }
-
-    public String getPassword() {
-        return Password;
-    }
-
-    public void setPassword(String password) {
-        Password = password;
-    }
-
-    public String getEmail() {
-        return Email;
-    }
-
-    public void setEmail(String email) {
-        Email = email;
-    }
-
-    public long getCode() {
-        return Code;
-    }
-
-    public void setCode(long code) {
-        Code = code;
     }
 }
 

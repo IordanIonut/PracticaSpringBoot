@@ -4,51 +4,43 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.text.DateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
-@Entity
+@Entity(name = "assert_employee")
 @Table(name = "assert_employee")
 public class Asser_Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_assert_employee" , nullable = false)
     private long Id_Assert_Employee;
-    @NotNull
     @ManyToOne
     @PrimaryKeyJoinColumn(name = "id_employee")
     private Employee Employee;
-    @NotNull
     @ManyToOne
     @PrimaryKeyJoinColumn(name = "id_cos_center")
     private CosCenter CosCenter;
-    @NotNull
-    @Column(name = "image",  nullable = false, columnDefinition="BLOB")
-    private byte[] Image;
-    @NotNull
-    @Column(name = "from", nullable = false)
-    private DateFormat From;
-    @NotNull
-    @Column(name = "to", nullable = false)
-    private DateFormat To;
-    @NotNull
-    @Column(name = "end_to_life", nullable = false)
-    private DateFormat End_To_Life;
+    @Column( nullable = false)
+    private Date From_Date;
+    @Column( nullable = false)
+    private Date To_Date;
+    @Column(nullable = false)
+    private Date End_To_Life;
 
-    public Asser_Employee(long id_Assert_Employee, com.demo.Model.Employee employee, com.demo.Model.CosCenter cosCenter, @NotNull byte[] image, DateFormat from, DateFormat to, DateFormat end_To_Life) {
+    public Asser_Employee(long id_Assert_Employee, Employee employee, CosCenter cosCenter,Date from,
+                          Date to, Date end_To_Life) {
         Id_Assert_Employee = id_Assert_Employee;
         Employee = employee;
         CosCenter = cosCenter;
-        Image = image;
-        From = from;
-        To = to;
+        From_Date = from;
+        To_Date = to;
         End_To_Life = end_To_Life;
     }
 
-    public Asser_Employee(com.demo.Model.Employee employee, com.demo.Model.CosCenter cosCenter, @NotNull byte[] image, DateFormat from, DateFormat to, DateFormat end_To_Life) {
+    public Asser_Employee(Employee employee, CosCenter cosCenter, Date from, Date to, Date end_To_Life) {
         Employee = employee;
         CosCenter = cosCenter;
-        Image = image;
-        From = from;
-        To = to;
+        From_Date = from;
+        To_Date = to;
         End_To_Life = end_To_Life;
     }
 
@@ -61,9 +53,8 @@ public class Asser_Employee {
                 "Id_Assert_Employee=" + Id_Assert_Employee +
                 ", Employee=" + Employee +
                 ", CosCenter=" + CosCenter +
-                ", Image=" + Arrays.toString(Image) +
-                ", From=" + From +
-                ", To=" + To +
+                ", From=" + From_Date +
+                ", To=" + To_Date +
                 ", End_To_Life=" + End_To_Life +
                 '}';
     }
@@ -84,43 +75,35 @@ public class Asser_Employee {
         Employee = employee;
     }
 
-    public com.demo.Model.CosCenter getCosCenter() {
+    public CosCenter getCosCenter() {
         return CosCenter;
     }
 
-    public void setCosCenter(com.demo.Model.CosCenter cosCenter) {
+    public void setCosCenter(CosCenter cosCenter) {
         CosCenter = cosCenter;
     }
 
-    public byte[] getImage() {
-        return Image;
+    public Date getFrom() {
+        return From_Date;
     }
 
-    public void setImage(byte[] image) {
-        Image = image;
+    public void setFrom(Date from) {
+        From_Date = from;
     }
 
-    public DateFormat getFrom() {
-        return From;
+    public Date getTo() {
+        return To_Date;
     }
 
-    public void setFrom(DateFormat from) {
-        From = from;
+    public void setTo(Date to) {
+        To_Date = to;
     }
 
-    public DateFormat getTo() {
-        return To;
-    }
-
-    public void setTo(DateFormat to) {
-        To = to;
-    }
-
-    public DateFormat getEnd_To_Life() {
+    public Date getEnd_To_Life() {
         return End_To_Life;
     }
 
-    public void setEnd_To_Life(DateFormat end_To_Life) {
+    public void setEnd_To_Life(Date end_To_Life) {
         End_To_Life = end_To_Life;
     }
 }

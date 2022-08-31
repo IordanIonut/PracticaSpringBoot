@@ -1,53 +1,35 @@
 package com.demo.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
-@Entity
-@Table(name = "manager")
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+@JsonIgnoreProperties
+@Entity(name = "manager")
+@Data
+@ToString
+@Getter
+@Setter
+@AllArgsConstructor
+@Table(name="manager")
 public class Manager {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_manager" , nullable = false)
     private long Id_Manager;
-    @Column(name = "name" , unique=true , nullable = false)
+
+    @Column(name = "name" , nullable = false)
     private String Name;
 
-    public Manager(long id_manager, String name) {
-        this.Id_Manager = id_manager;
-        this.Name = name;
-    }
-
-    public Manager(String name) {
-        this.Name = name;
-    }
+    @Transient
+    private Employee employee;
 
     public Manager() {
+
     }
 
-    @Override
-    public String toString() {
-        return "Manager{" +
-                "id_manager=" + Id_Manager +
-                ", name='" + Name + '\'' +
-                '}';
-    }
-
-    public long getId_manager() {
-        return Id_Manager;
-    }
-
-    public void setId_manager(long id_manager) {
-        this.Id_Manager = id_manager;
-    }
-
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-        this.Name = name;
-    }
 }
